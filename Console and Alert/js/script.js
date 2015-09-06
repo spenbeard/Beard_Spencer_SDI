@@ -1,3 +1,10 @@
-/**
- * Created by SpencerBeard on 9/5/15.
- */
+//JavaScript
+
+var yearBorn = 1955;
+
+/*
+console.log("Hello World");
+console.log(yearBorn);
+    */
+
+alert(yearBorn);
