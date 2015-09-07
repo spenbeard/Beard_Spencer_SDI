@@ -43,7 +43,8 @@ console.log(yearsMore);
 
 //Future age is current age + years in the future
 //Cast the variable as a number when using plus signs
-var futureAge = age + parseInt(yearsMore);
+var futureAge = age;
+futureAge += parseInt(yearsMore);
 
 console.log(futureAge);
 
