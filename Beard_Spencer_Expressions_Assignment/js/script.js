@@ -41,13 +41,19 @@ Assignment: Expressions
  alert("Okay, "+userName+". Now it's time for us to talk about income.");
 
  //set up array for income values
- var extraIncome;
- var incomeTypes = ["Hourly Pay", "Hours per week", extraIncome];
+ var incomeTypes = ["Hourly Pay", "Hours per week", "Other Income"];
+
+ console.log(incomeTypes);
 
  //prompt user for hourly wage and hours per week
  incomeTypes[0] = prompt("How much are you paid per hour at your job?");
  incomeTypes[1] = prompt("How many hours do you work every week?");
 
  alert("You work "+incomeTypes[1]+" hours per week and you are paid $"+incomeTypes[0]+" per hour");
- console.log(incometypes[0]);
- console.log(incometypes[1]);
+ console.log(incomeTypes[0]);
+ console.log(incomeTypes[1]);
+
+ //prompt user for any other regular income
+ incomeTypes[2] = prompt("If you have other income sources, how much do you make from those every month?");
+ alert("You make $"+incomeTypes[2]+" from other sources.");
+ console.log(incomeTypes[2]);
