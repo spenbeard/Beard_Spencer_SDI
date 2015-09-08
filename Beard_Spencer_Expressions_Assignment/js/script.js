@@ -35,4 +35,19 @@ Assignment: Expressions
  var totalExpenses = parseFloat(bills) + parseFloat(groceries) + parseFloat(otherExpenses);
 
  console.log(totalExpenses);
- alert("You spend $"+totalExpenses+" every month.");
+ alert(userName+", you spend $"+totalExpenses+" every month.");
+
+ //tell the user that we are now covering income amounts
+ alert("Okay, "+userName+". Now it's time for us to talk about income.");
+
+ //set up array for income values
+ var extraIncome;
+ var incomeTypes = ["Hourly Pay", "Hours per week", extraIncome];
+
+ //prompt user for hourly wage and hours per week
+ incomeTypes[0] = prompt("How much are you paid per hour at your job?");
+ incomeTypes[1] = prompt("How many hours do you work every week?");
+
+ alert("You work "+incomeTypes[1]+" hours per week and you are paid $"+incomeTypes[0]+" per hour");
+ console.log(incometypes[0]);
+ console.log(incometypes[1]);
