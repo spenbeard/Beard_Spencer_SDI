@@ -72,14 +72,14 @@ Assignment: Expressions
 
  //set total income
  var workIncome = incomeTypes[0] * incomeTypes[1] * 52;
- workIncome /= workIncome/12;
+ workIncome /= 12;
  console.log(parseFloat(workIncome).toFixed(2));
- var totalIncome = parseFloat(workIncome).toFixed(2) + parseFloat(incomeTypes[2]);
- alert("You earn a total of $" + parseFloat(totalIncome).toFixed(2) +" every month.");
+ var totalIncome = parseFloat(workIncome) + parseFloat(incomeTypes[2]);
  console.log(totalIncome);
+ alert("You earn a total of $" + parseFloat(totalIncome).toFixed(2) +" every month.");
 
  //tell user how much money they have left over
  var extraMoney = totalIncome - totalExpenses;
  alert(userName + ", you earn a total of $" + parseFloat(totalIncome).toFixed(2) +" every month. \nYou spend $" + parseFloat(totalExpenses).toFixed(2) + " every month. \nYou have $" + parseFloat(extraMoney).toFixed(2) + " left over for the month. \nI hope this helps you.");
 
- /* test values
+ /* test values */
