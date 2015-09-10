@@ -5,7 +5,6 @@ Assignment: Expressions
 9/6/2015
  */
 
- //welcome message and initial prompt
  alert("Hi. I am here to help you figure out how much \nextra money you have at the end of the month.");
  var userName = prompt("First, what's your name?");
  alert("Nice to meet you " + userName + ". Let's see if I can help you out.");
@@ -21,25 +20,26 @@ Assignment: Expressions
 
  //show user what they entered for bills and prompt for food spending
  //alert("You spend $"+bills+" on monthly bills.");
- var groceries = prompt("You spend $" + bills + " on monthly bills. \nI'm sure you eat food, right? How much would you say you spend on food each month?");
+ var groceries = prompt("You spend $" + parseFloat(bills).toFixed(2) + " on monthly bills. \nI'm sure you eat food, right? How much would you say you spend on food each month?");
  groceries = groceries.replace("$", "");
  groceries = groceries.replace(",", "");
 
  console.log(groceries);
 
- //show user what they entered for groceries and prompt for other expenses
- //alert("You spend $"+groceries+" on food every month.");
- var otherExpenses = prompt("You spend $" + groceries + " on food every month. \nIf there are any other regular expenses you have, total them up. How much do you" + " spend on other regular expenses?");
+
+ var otherExpenses = prompt("You spend $" + parseFloat(groceries).toFixed(2) + " on food every month. \nIf there are any other regular expenses you have, total them up. How much do you" + " spend on other regular expenses?");
  otherExpenses = otherExpenses.replace("$", "");
  otherExpenses = otherExpenses.replace(",", "");
 
  console.log(otherExpenses);
- alert("You spend $"+otherExpenses+" on all other expenses.");
+
+ alert("You spend $" + parseFloat(otherExpenses).toFixed(2) + " on all other expenses.");
 
  //total the amount of bills, groceries, and otherExpenses
  var totalExpenses = parseFloat(bills) + parseFloat(groceries) + parseFloat(otherExpenses);
 
  console.log(totalExpenses);
+
  alert(userName+", you spend $" + parseFloat(totalExpenses).toFixed(2) + " every month.");
 
  //tell the user that we are now covering income amounts
@@ -68,7 +68,7 @@ Assignment: Expressions
  incomeTypes[2] = incomeTypes[2].replace(",", "");
  console.log(incomeTypes[2]);
 
- alert("You work "+incomeTypes[1]+" hours per week. \nYou are paid $"+incomeTypes[0]+" per hour. \nYou earn $" + incomeTypes[2] + " additional income.");
+ alert("You work "+incomeTypes[1]+" hours per week. \nYou are paid $"+incomeTypes[0]+" per hour. \nYou earn $" + parseFloat(incomeTypes[2]).toFixed(2) + " additional income.");
 
  //set total income
  var workIncome = incomeTypes[0] * incomeTypes[1] * 52;
@@ -80,6 +80,37 @@ Assignment: Expressions
 
  //tell user how much money they have left over
  var extraMoney = totalIncome - totalExpenses;
+ console.log(extraMoney);
  alert(userName + ", you earn a total of $" + parseFloat(totalIncome).toFixed(2) +" every month. \nYou spend $" + parseFloat(totalExpenses).toFixed(2) + " every month. \nYou have $" + parseFloat(extraMoney).toFixed(2) + " left over for the month. \nI hope this helps you.");
 
- /* test values */
+ /* test values
+
+Inputs
+  userName = Spencer
+  bills = $1,200.00
+  groceries = $300
+  otherExpenses = 200
+  incomeTypes[0] = $13.00
+  incomeTypes[1] = 40
+  incomeTypes[2] = $0
+Outputs
+  totalExpenses = 1700.00
+  workIncome = 2253.3333333333335
+  totalIncome = 2253.3333333333335
+  extraMoney = 553.3333333333335
+
+Inputs
+  userName = Alexander
+  bills = 1500
+  groceries = 500
+  otherExpenses = $750
+  incomeTypes[0] = 10.25
+  incomeTypes[1] = 25
+  incomeTypes[2] = $500
+Outputs
+  totalExpenses = 2750
+  workIncome = 1110.42
+  totalIncome = 1610.4166666666667
+  extraMoney = -1139.5833333333333
+
+  */
