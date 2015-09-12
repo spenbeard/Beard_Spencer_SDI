@@ -10,7 +10,7 @@ September 11, 2015
 //Array - variable that holds multiple variables
 //Index # of an array always starts with 0!!
 
-var bowlOfFruit = ["apple", "banana", "pear", "peach"];
+var bowlOfFruit = ["apple", "banana", "pear", "peach", "pear"];
 
  //see whole array
  console.log(bowlOfFruit);
@@ -46,3 +46,32 @@ var bowlOfFruit = ["apple", "banana", "pear", "peach"];
  } else {
      console.log("This is not a pear!");
  }
+
+ if(bowlOfFruit[1] === "pear"){
+     //this code will run if true
+     //add 1 to the total number of pears
+     console.log("This item is a pear!");
+     totalNumPears ++
+ } else {
+     console.log("This is not a pear!");
+ }
+
+ if(bowlOfFruit[2] === "pear"){
+     //this code will run if true
+     //add 1 to the total number of pears
+     console.log("This item is a pear!");
+     totalNumPears ++
+ } else {
+     console.log("This is not a pear!");
+ }
+
+ if(bowlOfFruit[3] === "pear"){
+     //this code will run if true
+     //add 1 to the total number of pears
+     console.log("This item is a pear!");
+     totalNumPears ++
+ } else {
+     console.log("This is not a pear!");
+ }
+
+ console.log("There are " + totalNumPears + " pear(s) bowl.");
