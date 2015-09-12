@@ -29,4 +29,20 @@ var bowlOfFruit = ["apple", "banana", "pear", "peach"];
  //Create a variable that will keep track of how many pears there are.
  var totalNumPears = 0;
 
- 
+ //Test each item in the the array and check if it is a pear
+
+ //basic structure of a conditional
+ // if(condition to test){code that will run if true}
+
+ // "7" == 7 - true
+ // "7" === 7 - false
+ //prompts always return strings!!
+
+ if(bowlOfFruit[0] === "pear"){
+     //this code will run if true
+     //add 1 to the total number of pears
+     console.log("This item is a pear!");
+     totalNumPears ++
+ } else {
+     console.log("This is not a pear!");
+ }
