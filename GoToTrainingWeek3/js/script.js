@@ -98,3 +98,28 @@ var bowlOfFruit = ["apple", "banana", "pear", "peach", "pear", "banana", "kiwi",
  }
 
  console.log("The total number of pears in the bowl is "+pearNumber);
+
+ //validate prompts
+ var name = prompt("What is your name?");
+
+ //Test to see if the variable is blank
+ if(name === ""){
+     //The user left it blank
+     //reprompt the user using the SAME variable
+     name = prompt("Please do not leave blank.\nWhat is your name?");
+ }
+
+ var num1 = prompt("Please type in a number");
+
+ //test to see if it is a number
+ //isNaN(item to test)
+ console.log(isNaN("cat")); //true
+ console.log(isNaN(7)); // returns false
+ console.log(isNaN("7")); // returns false
+
+ if(isNaN(num1)){
+     //reprompt the user
+     num1 = prompt("Please only use numbers.\nType in a number.");
+ } else{
+     console.log("It is a number");
+ }
