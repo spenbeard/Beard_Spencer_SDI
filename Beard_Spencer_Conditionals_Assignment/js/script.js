@@ -6,7 +6,7 @@ Date
  */
 
  alert("Hello and welcome to your character creation.");
-
+ console.log("Welcome to the world of JavaCraft");
 
  //conditional for naming the character the user is creating. The loop is set in such a way that it will prompt until a name is entered.
  for(var i = 0; i < 1; ){
@@ -23,7 +23,7 @@ Date
  //set up array of races available
  var availableRaces = ["Human", "Elf", "Dwarf", "Orc", "Goblin", "Undead"];
  //set an array to determine starting intelligence from races
- var intRace = [5, 3, 1, 1, 3, 5];
+ var magRace = [5, 3, 1, 1, 3, 5];
  //set an array to determine starting strength from races
  var strRace = [3, 1, 5, 5, 1, 3];
  //set an array to determine starting agility from races
@@ -40,8 +40,8 @@ Date
      for (var i = 0; i < availableRaces.length; i++) {
          if (availableRaces[i].toLowerCase() === characterRace.toLowerCase()) {
              console.log("You chose to be a(n) " + characterRace.toLowerCase());
-             intRace = intRace[i];
-             console.log("You earn " + intRace + " intelligence.");
+             magRace = magRace[i];
+             console.log("You earn " + magRace + " intelligence.");
              strRace = strRace[i];
              console.log("You earn " + strRace + " strength.");
              agiRace = agiRace[i];
@@ -60,7 +60,7 @@ Date
  }
 
  var availableClasses = ["Warrior", "Mage", "Archer", "Cleric"];
- var intClass = [1, 5, 3, 5];
+ var magClass = [1, 5, 3, 5];
  var strClass = [5, 1, 1, 1];
  var agiClass = [3, 3, 5, 3];
 
@@ -71,9 +71,12 @@ Date
      for (i = 0; i < availableClasses.length; i++) {
          if (availableClasses[i].toLowerCase() === characterClass.toLowerCase()) {
              console.log("You chose to be a " + characterClass.toLowerCase());
-             intClass = intClass[i];
+             magClass = magClass[i];
+             console.log("You earn " + magClass + " intelligence.");
              strClass = strClass[i];
+             console.log("You earn " + strClass + " strength.");
              agiClass = agiClass[i];
+             console.log("You earn " + agiClass + " agility.");
              i = availableClasses.length + 1;
              classValidate++
          }
@@ -88,32 +91,40 @@ Date
  }
 
  var availableGender= ["Male", "Female"];
- var intGender = [3, 5];
+ var magGender = [3, 5];
  var strGender = [5, 1];
  var agiGender = [1, 3];
 
- var characterGender = prompt("Choose a gender:]n" + availableGender.join(", "));
+ var characterGender = prompt("Choose a gender:\n" + availableGender.join(", "));
  var genderValidate = 0;
 
- for(var iG = 0; iR < 1; ){
-     for(i = 0; i < availableGender.length; i++){
-         if (availableGender[i].toLowerCase() === characterGender.toLowerCase()){
+ for(var iG = 0; iG < 1; ) {
+     for (i = 0; i < availableGender.length; i++) {
+         if (availableGender[i].toLowerCase() === characterGender.toLowerCase()) {
              console.log("You chose to be " + characterGender.toLowerCase());
-             intGender = intGender[i];
+             magGender = magGender[i];
+             console.log("You earn " + magGender + " intelligence.");
              strGender = strGender[i];
+             console.log("You earn " + strGender + " strength.");
              agiGender = agiGender[i];
+             console.log("You earn " + agiGender + " agility.");
              i = availableGender.length + 1;
              genderValidate++
          }
      }
+     if (genderValidate == 0) {
+         console.log("That is not one of the options. Please enter again.");
+         characterClass = prompt("Choose a race from the following:\n" + availableGender.join(", "));
+     } else {
+         iG = 1;
+     }
  }
-
- var intTotal = intRace + intClass + intGender;
- console.log(intTotal);
- var strTotal = strRace + strClass + strGender;
- console.log(strTotal);
- var agiTotal = agiRace + agiClass + agiGender;
- console.log(agiTotal);
+ var magTotal = parseInt(magRace) + parseInt(magClass) + parseInt(magGender);
+ console.log("Total intelligence is " + magTotal);
+ var strTotal = parseInt(strRace) + parseInt(strClass) + parseInt(strGender);
+ console.log("Total strength is " + strTotal);
+ var agiTotal = parseInt(agiRace) + parseInt(agiClass) + parseInt(agiGender);
+ console.log("Total intelligence is " + agiTotal);
 
  console.log("You are " + characterName + ", a Level 1 " + characterGender + " " + characterRace + " " + characterClass + ".");
- console.log("Your starting stats are: " + intTotal + " intelligence, " + strTotal + " strength, and " + agiTotal + " agility. ");
+ console.log("Your starting stats are: " + magTotal + " intelligence, " + strTotal + " strength, and " + agiTotal + " agility. ");
