@@ -41,8 +41,11 @@ Date
          if (availableRaces[i].toLowerCase() === characterRace.toLowerCase()) {
              console.log("You chose to be a(n) " + characterRace.toLowerCase());
              intRace = intRace[i];
+             console.log("You earn " + intRace + " intelligence.");
              strRace = strRace[i];
+             console.log("You earn " + strRace + " strength.");
              agiRace = agiRace[i];
+             console.log("You earn " + agiRace + " agility.");
              i = availableRaces.length + 1;
              raceValidate++
          }
@@ -64,7 +67,7 @@ Date
  var characterClass = prompt("Choose a race from the following:\n" + availableClasses.join(", "));
  var classValidate = 0;
 
- for(var iR = 0; iR < 1; ) {
+ for(var iC = 0; iC < 1; ) {
      for (i = 0; i < availableClasses.length; i++) {
          if (availableClasses[i].toLowerCase() === characterClass.toLowerCase()) {
              console.log("You chose to be a " + characterClass.toLowerCase());
@@ -80,7 +83,7 @@ Date
          console.log("That is not one of the options. Please enter again.");
          characterClass = prompt("Choose a race from the following:\n" + availableClasses.join(", "));
      } else {
-         iR = 1;
+         iC = 1;
      }
  }
 
@@ -104,3 +107,13 @@ Date
          }
      }
  }
+
+ var intTotal = intRace + intClass + intGender;
+ console.log(intTotal);
+ var strTotal = strRace + strClass + strGender;
+ console.log(strTotal);
+ var agiTotal = agiRace + agiClass + agiGender;
+ console.log(agiTotal);
+
+ console.log("You are " + characterName + ", a Level 1 " + characterGender + " " + characterRace + " " + characterClass + ".");
+ console.log("Your starting stats are: " + intTotal + " intelligence, " + strTotal + " strength, and " + agiTotal + " agility. ");
