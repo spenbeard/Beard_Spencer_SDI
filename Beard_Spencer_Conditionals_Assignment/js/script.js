@@ -22,11 +22,11 @@ Date
 
  //set up array of races available
  var availableRaces = ["Human", "Elf", "Dwarf", "Orc", "Goblin", "Undead"];
- //set an array to determine intelligence for race
+ //set an array to determine intelligence for races
  var magRace = [5, 3, 1, 1, 3, 5];
- //set an array to determine strength for race
+ //set an array to determine strength for races
  var strRace = [3, 1, 5, 5, 1, 3];
- //set an array to determine agility for race
+ //set an array to determine agility for races
  var agiRace = [1, 5, 3, 3, 5, 1];
 
  //create a variable to track the race selected by the User
@@ -37,9 +37,9 @@ Date
 
  //create a loop that will ensure that a valid race has been chosen. If a valid race has not been chosen, the loop will continue to run the prompt until a valid option is selected.
  for(var iR = 0; iR < 1; ) {
+     //loop to evaluate if entered race is in the array
      for (var i = 0; i < availableRaces.length; i++) {
          //applied .toLowerCase in order to handle possible discrepancies between caps being used or not used in comparison to the array values.
-         //evaluates if the prompt response matches the array
          if (availableRaces[i].toLowerCase() === characterRace.toLowerCase()) {
              console.log("You chose to be a(n) " + characterRace.toLowerCase());
              //sets intelligence stat contribution for racial choice
@@ -53,7 +53,7 @@ Date
              console.log("You earn " + agiRace + " agility.");
              //this will alter i in order to close to loop
              i = availableRaces.length + 1;
-             //sets validation variable to ensure that a correct race has been chosen
+             //sets validation variable to log that a correct race has been chosen
              raceValidate++
          }
      }
@@ -71,84 +71,122 @@ Date
  var availableClasses = ["Warrior", "Mage", "Archer", "Cleric"];
  //array to determine intelligence for classes
  var magClass = [1, 5, 3, 5];
+ //array to determine strength for classes
  var strClass = [5, 1, 1, 1];
+ //array to determine agility for classes
  var agiClass = [3, 3, 5, 3];
 
+ //prompt user to choose a class
  var characterClass = prompt("Choose a race from the following:\n" + availableClasses.join(", "));
+ //create variable for class validation
  var classValidate = 0;
 
+ //create a loop that will ensure that a valid class has been chosen. If a valid class has not been chosen, the loop will continue to run the prompt until a valid option is selected.
  for(var iC = 0; iC < 1; ) {
+     //loop to evaluate if entered class is in the array
      for (i = 0; i < availableClasses.length; i++) {
+         //applied .toLowerCase in order to handle possible discrepancies between caps being used or not used in comparison to the array values.
          if (availableClasses[i].toLowerCase() === characterClass.toLowerCase()) {
              console.log("You chose to be a " + characterClass.toLowerCase());
+             //sets intelligence stat contribution for class choice
              magClass = magClass[i];
              console.log("You earn " + magClass + " intelligence.");
+             //sets strength stat contribution for class choice
              strClass = strClass[i];
              console.log("You earn " + strClass + " strength.");
+             //sets agility stat contribution for class choice
              agiClass = agiClass[i];
              console.log("You earn " + agiClass + " agility.");
+             //this will alter i in order to close the loop
              i = availableClasses.length + 1;
+             //sets validation variable to log that a correct class has been chosen
              classValidate++
          }
      }
-
+     //tests if the entered class is one of the options
      if (classValidate == 0) {
          console.log("That is not one of the options. Please enter again.");
          characterClass = prompt("Choose a race from the following:\n" + availableClasses.join(", "));
      } else {
+         //if a correct class is chosen, then classValidate != 0, which sets iC to 1, and closes the choose race loop
          iC = 1;
      }
  }
 
+ //array to set gender options
  var availableGender= ["Male", "Female"];
+ //array to determine intelligence for classes
  var magGender = [3, 5];
+ //array to determine strength for classes
  var strGender = [5, 1];
+ //array to determine agility for classes
  var agiGender = [1, 3];
 
+ //prompt user to choose gender
  var characterGender = prompt("Choose a gender:\n" + availableGender.join(", "));
+ //sets up validation variable for gender choice
  var genderValidate = 0;
 
+ //create a loop that will ensure that a valid class has been chosen. If a valid class has not been chosen, the loop will continue to run the prompt until a valid option is selected.
  for(var iG = 0; iG < 1; ) {
+     //loop to evaluate if entered class is in the array
      for (i = 0; i < availableGender.length; i++) {
+         //applied .toLowerCase in order to handle possible discrepancies between caps being used or not used in comparison to the array values.
          if (availableGender[i].toLowerCase() === characterGender.toLowerCase()) {
              console.log("You chose to be " + characterGender.toLowerCase());
+             //sets intelligence stat contribution for gender choice
              magGender = magGender[i];
              console.log("You earn " + magGender + " intelligence.");
+             //sets strength stat contribution for gender choice
              strGender = strGender[i];
              console.log("You earn " + strGender + " strength.");
+             //sets agility stat contributions for gender choice
              agiGender = agiGender[i];
              console.log("You earn " + agiGender + " agility.");
+             //this will alter i in order to close the loop
              i = availableGender.length + 1;
+             //sets validation variable to log that a correct class has been chosen
              genderValidate++
          }
      }
+     //tests if entered gender is one of the options
      if (genderValidate == 0) {
          console.log("That is not one of the options. Please enter again.");
          characterClass = prompt("Choose a race from the following:\n" + availableGender.join(", "));
      } else {
+         //if a correct gender is chosen, then genderValidate != 0, which sets iG to 1, and closes the choose gender loop
          iG = 1;
      }
  }
+ //totals intelligence from the three choices
  var magTotal = parseInt(magRace) + parseInt(magClass) + parseInt(magGender);
  console.log("Total intelligence is " + magTotal);
+
+ //totals strength from the three choices
  var strTotal = parseInt(strRace) + parseInt(strClass) + parseInt(strGender);
  console.log("Total strength is " + strTotal);
+
+ //totals agility from the three choices
  var agiTotal = parseInt(agiRace) + parseInt(agiClass) + parseInt(agiGender);
  console.log("Total intelligence is " + agiTotal);
 
+ //tells the user the summary of their character
  console.log("You are " + characterName + ", a Level 1 " + characterGender + " " + characterRace + " " + characterClass + ".");
  console.log("Your starting stats are: " + magTotal + " intelligence, " + strTotal + " strength, and " + agiTotal + " agility. ");
+
+ //determines if magic is the highest stat and displays message if it is
  if(magTotal > strTotal){
      if(magTotal > agiTotal){
          console.log("Your primary attribute is intelligence.");
      }
  }
+ //determines if strength is the highest stat and displays message if it is
  if(strTotal > magTotal){
      if(strTotal > agiTotal){
          console.log("Your primary attribute is strength.");
      }
  }
-
+ //determines if agility is the highest stat and displays message if it is
  if(agiTotal > strTotal){
      if(agiTotal > magTotal){
          console.log("Your primary attribute is agility.");
