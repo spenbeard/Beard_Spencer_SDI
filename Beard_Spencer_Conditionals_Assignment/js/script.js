@@ -22,11 +22,11 @@ Date
 
  //set up array of races available
  var availableRaces = ["Human", "Elf", "Dwarf", "Orc", "Goblin", "Undead"];
- //set an array to determine starting intelligence from races
+ //set an array to determine intelligence for race
  var magRace = [5, 3, 1, 1, 3, 5];
- //set an array to determine starting strength from races
+ //set an array to determine strength for race
  var strRace = [3, 1, 5, 5, 1, 3];
- //set an array to determine starting agility from races
+ //set an array to determine agility for race
  var agiRace = [1, 5, 3, 3, 5, 1];
 
  //create a variable to track the race selected by the User
@@ -38,28 +38,38 @@ Date
  //create a loop that will ensure that a valid race has been chosen. If a valid race has not been chosen, the loop will continue to run the prompt until a valid option is selected.
  for(var iR = 0; iR < 1; ) {
      for (var i = 0; i < availableRaces.length; i++) {
+         //applied .toLowerCase in order to handle possible discrepancies between caps being used or not used in comparison to the array values.
+         //evaluates if the prompt response matches the array
          if (availableRaces[i].toLowerCase() === characterRace.toLowerCase()) {
              console.log("You chose to be a(n) " + characterRace.toLowerCase());
+             //sets intelligence stat contribution for racial choice
              magRace = magRace[i];
              console.log("You earn " + magRace + " intelligence.");
+             //sets strength stat contribution for racial choice
              strRace = strRace[i];
              console.log("You earn " + strRace + " strength.");
+             //sets agility stat contribution for racial choice
              agiRace = agiRace[i];
              console.log("You earn " + agiRace + " agility.");
+             //this will alter i in order to close to loop
              i = availableRaces.length + 1;
+             //sets validation variable to ensure that a correct race has been chosen
              raceValidate++
          }
      }
-
+     //tests if the entered race is one of the options.
      if (raceValidate == 0) {
          console.log("That is not one of the options. Please enter again.");
          characterRace = prompt("Choose a race from the following:\n" + availableRaces.join(", "));
      } else {
+         //if a correct race is chosen, then raceValidate != 0, which sets iR to 1, and closes the choose race loop
          iR = 1;
      }
  }
 
+ //array for available class options
  var availableClasses = ["Warrior", "Mage", "Archer", "Cleric"];
+ //array to determine intelligence for classes
  var magClass = [1, 5, 3, 5];
  var strClass = [5, 1, 1, 1];
  var agiClass = [3, 3, 5, 3];
@@ -128,3 +138,19 @@ Date
 
  console.log("You are " + characterName + ", a Level 1 " + characterGender + " " + characterRace + " " + characterClass + ".");
  console.log("Your starting stats are: " + magTotal + " intelligence, " + strTotal + " strength, and " + agiTotal + " agility. ");
+ if(magTotal > strTotal){
+     if(magTotal > agiTotal){
+         console.log("Your primary attribute is intelligence.");
+     }
+ }
+ if(strTotal > magTotal){
+     if(strTotal > agiTotal){
+         console.log("Your primary attribute is strength.");
+     }
+ }
+
+ if(agiTotal > strTotal){
+     if(agiTotal > magTotal){
+         console.log("Your primary attribute is agility.");
+     }
+ }
