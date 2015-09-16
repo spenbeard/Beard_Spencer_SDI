@@ -192,3 +192,47 @@ Date
          console.log("Your primary attribute is agility.");
      }
  }
+
+ /* test values:
+
+ Input #1:
+    Name: Spencer
+    Race: Elf
+    Class: Mage
+    Gender: Male
+    Summary Output (code lines 173-194)
+    You are Spencer, a Level 1 Male Elf Mage.
+    Your starting stats are: 11 intelligence, 7 strength, and 9 agility.
+    Your primary attribute is intelligence.
+
+  Input #2:
+    Name: Drizzt Do'Urden
+    Race: Elf
+    Class: Warrior
+    Gender: Male
+    Summary Output (code lines 173-194)
+    You are Drizzt Do'Urden, a Level 1 Male Elf Warrior.
+    Your starting stats are: 7 intelligence, 11 strength, and 9 agility.
+    Your primary attribute is strength.
+
+  Input #3:
+    Name: Jaina Proudmore
+    Race: Human
+    Class: Mage
+    Gender: Female
+    Summary Output (code lines 173-194)
+    You are Jaina Proudmore, a Level 1 Female Human Mage.
+    Your starting stats are: 15 intelligence, 5 strength, and 7 agility.
+    Your primary attribute is intelligence.
+
+  Input #4:
+    Name: Gazlowe
+    Race: Goblin
+    Class: Archer
+    Gender: Male
+    Summary Output (code lines 173-194)
+    You are Gazlowe, a Level 1 Male Goblin Archer.
+    Your starting stats are: 9 intelligence, 7 strength, and 11 agility.
+    Your primary attribute is agility.
+
+  */
