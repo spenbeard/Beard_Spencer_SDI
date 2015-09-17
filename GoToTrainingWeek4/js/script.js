@@ -23,7 +23,7 @@ Date
 
      }
  }
- 
+
  /*
  Basic structure of a while loop
  //Declare a variable
@@ -37,3 +37,29 @@ Date
  }
 
   */
+
+ //prompt the user for max number
+ var maxNum = prompt("What is the max number");
+
+ //validate directly after prompt.
+ while(maxNum==="" || isNaN(maxNum)){
+     //re-prompt the user
+     if(maxNum===""){
+
+         maxNum = prompt("Please do not leave blank.\nWhat is the max number?");
+
+     } else if(isNaN(maxNum)) {
+
+         maxNum = prompt("Please only use numbers.\nWhat is the max number?");
+     }
+ }
+
+ //What if I wanted to validate words
+ //Ask a yes or no question
+ var happy = prompt("Are you happy today?");
+//convert to all lower case
+ happy = happy.toLowerCase();
+
+ while(happy != "yes" && happy != "no" && happy != "maybe"){
+     happy = prompt("Please only use yes, no, or maybe.\nAre you happy today?");
+ }
