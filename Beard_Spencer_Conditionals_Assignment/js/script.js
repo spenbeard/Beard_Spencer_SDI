@@ -175,22 +175,18 @@ Date
  console.log("Your starting stats are: " + magTotal + " intelligence, " + strTotal + " strength, and " + agiTotal + " agility. ");
 
  //determines if magic is the highest stat and displays message if it is
- if(magTotal > strTotal){
-     if(magTotal > agiTotal){
-         console.log("Your primary attribute is intelligence.");
-     }
+ if(magTotal > strTotal && magTotal>agiTotal){
+     console.log("Your primary attribute is intelligence.");
  }
+
  //determines if strength is the highest stat and displays message if it is
- if(strTotal > magTotal){
-     if(strTotal > agiTotal){
-         console.log("Your primary attribute is strength.");
-     }
+ if(strTotal > magTotal && strTotal > agiTotal){
+     console.log("Your primary attribute is strength.");
  }
+
  //determines if agility is the highest stat and displays message if it is
- if(agiTotal > strTotal){
-     if(agiTotal > magTotal){
-         console.log("Your primary attribute is agility.");
-     }
+ if(agiTotal > strTotal && agiTotal > magTotal){
+     console.log("Your primary attribute is agility.");
  }
 
  /* test values:
