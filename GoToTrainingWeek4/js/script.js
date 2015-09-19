@@ -63,3 +63,21 @@ Date
  while(happy != "yes" && happy != "no" && happy != "maybe"){
      happy = prompt("Please only use yes, no, or maybe.\nAre you happy today?");
  }
+
+ //Function call - "go button" that runs the function
+ //Arguments go inside of the function call ()
+ randomizr(minNum, maxNum);
+
+ //Create a function to calculate the random number
+ //parameters go inside of ()
+ //Parameters are temporary variables that can only be accessed inside of the fuction.
+ //They catch the arguments that are thrown into the function
+ //It makes the code more flexible
+ //We DO NOT want to use main code variables inside of functions
+ function randomizr(min, max){
+
+     //Generate our random number
+     var randomNumber = Math.random()*(max-min)+Number(min);
+     console.log(randomNumber);
+
+ }

@@ -168,7 +168,7 @@ Date
 
  //totals agility from the three choices
  var agiTotal = parseInt(agiRace) + parseInt(agiClass) + parseInt(agiGender);
- console.log("Total intelligence is " + agiTotal);
+ console.log("Total agility is " + agiTotal);
 
  //tells the user the summary of their character
  console.log("You are " + characterName + ", a Level 1 " + characterGender + " " + characterRace + " " + characterClass + ".");
