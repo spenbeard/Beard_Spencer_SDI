@@ -66,8 +66,11 @@ Date
 
  //Function call - "go button" that runs the function
  //Arguments go inside of the function call ()
- randomizr(minNum, maxNum);
+ //create a variable to CATCH the returned value
+ var returnedValue = randomizr(minNum, maxNum);
 
+ console.log("Your random number between " + minNum + " and " + maxNum + " is " + returnedValue);
+ 
  //Create a function to calculate the random number
  //parameters go inside of ()
  //Parameters are temporary variables that can only be accessed inside of the fuction.
@@ -77,7 +80,10 @@ Date
  function randomizr(min, max){
 
      //Generate our random number
-     var randomNumber = Math.random()*(max-min)+Number(min);
-     console.log(randomNumber);
+     var randomNumber = Math.round(Math.random()*(max-min)+Number(min));
+     //console.log(randomNumber);
+
+     //return the value to our main code
+     return randomNumber;
 
  }
