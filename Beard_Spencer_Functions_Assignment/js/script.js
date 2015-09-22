@@ -12,10 +12,33 @@ Date
  while(userName === ""){
      userName = prompt("We will not admit anyone to fight in the Arena without a name. What is your name?");
  }
-
+ //greet user as a courtesy.
  console.log("Hello, " + userName + ". Welcome to the Arena.");
 
- /*
- var weaponchoices = ["Sword", "Axe", "Bow"]
- var userClass = prompt("Choose from the following options:\nSword - High base damage.\nAxe - High stun chance.\nBow - High Critical strike chance.");
-     */
+ //create array for weapon
+ var weaponChoices = ["Sword", "Hammer", "Bow"];
+ //damage = [sword damage, axe damage, bow damage
+ var weaponDamage = [8, 7, 5];
+ //critical strike chance
+ var weaponCritChance = [.05,.10,.17];
+ //critical strike multiplier
+ var weaponCritHit = [2, 3, 5];
+
+ //prompt user for weapon choice
+ var userWeapon = prompt("Choose from the following options:\nSword - High base damage.\nHammer - High stun chance.\nBow - High Critical strike chance.");
+
+ //validate weapon choice
+ for (var i = 0; i < weaponChoices.length; ){
+     if(weaponChoices[i].toLowerCase() === userWeapon.toLowerCase()){
+         console.log("You have chosen to wield a " + userWeapon + ".");
+         weaponDamage = weaponDamage[i];
+         console.log("Your base damage is " + weaponDamage + ".");
+         weaponCritChance = weaponCritChance[i];
+         console.log("Your base critical strike chance is " + weaponCritChance*100 + "%.");
+         weaponCritHit = weaponCritHit[i];
+         console.log("Your base critical strike multiplier is " + weaponCritHit + ".");
+         i = weaponChoices.length + 1;
+     } else{
+         userWeapon = prompt("You must select a valid weapon.\nChoose from the following options:\nHammer - High base damage.\nAxe - High stun chance.\nBow - High Critical strike chance.");
+     }
+ }
