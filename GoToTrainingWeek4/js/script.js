@@ -96,3 +96,17 @@ Date
      console.log(randomizr(minNum, maxNum));
 
  }
+
+ //the browser can not see an anon funciton until it gets to it.
+
+ //Create a anon funciton that adds two numbers together
+ //var functionName = function(){};
+
+ var addNums = function(num1, num2){
+     var total = Number(num1)+Number(num2);
+     return total;
+ };
+
+ //function call
+ var totalReturned = addNums(minNum, maxNum);
+ console.log(totalReturned);
