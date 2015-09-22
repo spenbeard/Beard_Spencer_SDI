@@ -70,7 +70,7 @@ Date
  var returnedValue = randomizr(minNum, maxNum);
 
  console.log("Your random number between " + minNum + " and " + maxNum + " is " + returnedValue);
- 
+
  //Create a function to calculate the random number
  //parameters go inside of ()
  //Parameters are temporary variables that can only be accessed inside of the fuction.
@@ -85,5 +85,14 @@ Date
 
      //return the value to our main code
      return randomNumber;
+
+ }
+
+ //Wanted 15 random numbers
+ //lets use a for loop
+ for(var i = 0; i < 15; i++){
+
+     //15 DIFFERENT results
+     console.log(randomizr(minNum, maxNum));
 
  }
