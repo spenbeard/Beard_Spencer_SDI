@@ -42,3 +42,19 @@ Date
          userWeapon = prompt("You must select a valid weapon.\nChoose from the following options:\nHammer - High base damage.\nAxe - High stun chance.\nBow - High Critical strike chance.");
      }
  }
+
+ var damageDealt = function(offDamage, defDefense){
+     var totalDamage = Number(offDamage) - Number(defDefense);
+     return totalDamage;
+ };
+
+ function baseAttackDamage(baseDamage, critChance, critHit){
+     var critStrike = Math.round(Math.random()*100);
+     if(critStrike <= critChance*100){
+         var atkCritDamage = Number(baseDamage)*Number(critHit);
+         return atkCritDamage;
+     } else{
+         var atkDamage = baseDamage;
+         return atkDamage;
+     }
+ }
