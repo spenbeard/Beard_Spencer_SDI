@@ -5,7 +5,13 @@ Title
 Date
  */
 
-//console.log("This is a test. This is only a test.");
+ function damageVariance(min, max){
+     var variance = Math.round(Math.random()*(max-min)+Number(min))/100;
+     return variance;
+ }
+ minVar = 75;
+ maxVar = 125;
+ console.log(damageVariance(minVar, maxVar));
 
  //Initial combat choice
  var userName = prompt("Hello and welcome to the Arena. What is your name?");
@@ -33,12 +39,12 @@ Date
      for (var i = 0; i < weaponChoices.length; i++){
          if(weaponChoices[i].toLowerCase() === userWeapon.toLowerCase()){
              console.log("You have chosen to wield a " + userWeapon + ".");
-             weaponDamage = weaponDamage[i];
-             console.log("Your base damage is " + weaponDamage + ".");
-             weaponCritChance = weaponCritChance[i];
-             console.log("Your base critical strike chance is " + weaponCritChance*100 + "%.");
-             weaponCritHit = weaponCritHit[i];
-             console.log("Your base critical strike multiplier is " + weaponCritHit + ".");
+             var userWeaponDamage = weaponDamage[i];
+             console.log("Your base damage is " + userWeaponDamage + ".");
+             var userWeaponCritChance = weaponCritChance[i];
+             console.log("Your base critical strike chance is " + userWeaponCritChance*100 + "%.");
+             var userWeaponCritHit = weaponCritHit[i];
+             console.log("Your base critical strike multiplier is " + userWeaponCritHit + ".");
              i = weaponChoices.length + 1;
              weaponValid++;
          }
@@ -79,15 +85,36 @@ Date
  }
 
  //Need to calculate damage dealt. If a critical strike occurs, damage dealt = Base Damage * Critical Strike Hit multiplier. If no critical strike, damage dealt = base damage.
- var attack = function baseAttackDamage(baseDamage, critChance, critHit){
+ var attack = function baseAttackDamage(baseDamage, critChance, critHit, variance){
      var critStrike = Math.round(Math.random()*100);
      var atkDamage;
      if(critStrike <= critChance*100){
-         atkDamage = Number(baseDamage)*Number(critHit);
+         atkDamage = Math.round(Number(baseDamage)*Number(critHit)*Number(variance));
          return atkDamage;
      } else {
-         atkDamage = baseDamage;
+         atkDamage = Math.round(Number(baseDamage)*Number(variance));
          return atkDamage;
      }
  };
 
+ //health for battle
+ var userHP = 100;
+ var enemyHP = 100;
+ var availableActions = ["Attack"];
+
+//battle sequence
+ while(userHP > 0 && enemyHP > 0) {
+     var action = prompt("You have " + userHP + " remaining. Your enemy has " + enemyHP + " remaining. What would you like to do?\n\nPlease select from the following: Attack");
+     for (i = 0; i < availableActions.length; i++) {
+         if (availableActions[i].toLowerCase() === action.toLowerCase()) {
+             var hitVar = damageVariance(minVar, maxVar);
+             var atkHit = attack(userWeaponDamage, userWeaponCritChance, userWeaponCritHit, hitVar);
+             enemyHP = enemyHP - atkHit;
+             if(enemyHP <= 0){
+                 console.log("You deal " + atkHit + " damage. Your enemy is vanquished! Congratulations!");
+             } else {
+                 console.log("You deal " + atkHit + " damage. Your enemy has " + enemyHP + " remaining.");
+             }
+         }
+     }
+ }
