@@ -5,13 +5,15 @@ Title
 Date
  */
 
+ //random number to create a variance on base damage.
  function damageVariance(min, max){
      var variance = Math.round(Math.random()*(max-min)+Number(min))/100;
      return variance;
  }
+
+ //numbers to create variance for damage. Damage variance from minVar(75%) to maxVar(125%) of the hit calculated by baseAttackDamageFunction
  minVar = 75;
  maxVar = 125;
- console.log(damageVariance(minVar, maxVar));
 
  //Initial combat choice
  var userName = prompt("Hello and welcome to the Arena. What is your name?");
@@ -97,6 +99,12 @@ Date
      }
  };
 
+ //random number generator for enemy actions
+ function enemyDecision(min, max){
+     var choice = Math.floor(Math.random()*(max-min)+min);
+     return choice;
+ }
+
  //health for battle
  var userHP = 100;
  var enemyHP = 100;
@@ -106,14 +114,30 @@ Date
  while(userHP > 0 && enemyHP > 0) {
      var action = prompt("You have " + userHP + " remaining. Your enemy has " + enemyHP + " remaining. What would you like to do?\n\nPlease select from the following: Attack");
      for (i = 0; i < availableActions.length; i++) {
-         if (availableActions[i].toLowerCase() === action.toLowerCase()) {
-             var hitVar = damageVariance(minVar, maxVar);
-             var atkHit = attack(userWeaponDamage, userWeaponCritChance, userWeaponCritHit, hitVar);
-             enemyHP = enemyHP - atkHit;
-             if(enemyHP <= 0){
-                 console.log("You deal " + atkHit + " damage. Your enemy is vanquished! Congratulations!");
-             } else {
-                 console.log("You deal " + atkHit + " damage. Your enemy has " + enemyHP + " remaining.");
+         //re-evaluate this code. This does not allow for different options to be selected. Attack, special attack, and anything else would always do the same thing.
+         if (availableActions[i].toLowerCase() === action.toLowerCase()){
+             if(action.toLowerCase() === availableActions[0].toLowerCase()){
+                 var hitVar = damageVariance(minVar, maxVar);
+                 var atkHit = attack(userWeaponDamage, userWeaponCritChance, userWeaponCritHit, hitVar);
+                 enemyHP = enemyHP - atkHit;
+                 if(enemyHP <= 0){
+                     console.log("You deal " + atkHit + " damage. Your enemy is vanquished! Congratulations!");
+                 } else {
+                     console.log("You deal " + atkHit + " damage. Your enemy has " + enemyHP + " remaining.");
+                 }
+             }
+         }
+     }
+     var enemyAction = enemyDecision(0, availableActions.length);
+     for (i = 0; i < availableActions.length; i++){
+         if(availableActions[enemyAction] === availableActions[0]){
+             var enemyHitVar = damageVariance(minVar, maxVar);
+             var enemyAtkHit = attack(enemyDamage, enemyCritChance, enemyCritHit, enemyHitVar);
+             userHP = userHP - enemyAtkHit;
+             if(userHP <= 0){
+                 console.log("You take " + enemyAtkHit + " damage. You have been defeated!");
+             } else{
+                 console.log("You take " + enemyAtkHit + " damage. You have " + userHP + " remaining.");
              }
          }
      }
