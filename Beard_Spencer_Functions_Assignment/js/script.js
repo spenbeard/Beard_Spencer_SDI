@@ -115,7 +115,7 @@ Date
  while(userHP > 0 && enemyHP > 0) {
      var action = prompt("You have " + userHP + " remaining. Your enemy has " + enemyHP + " remaining. What would you like to do?\n\nPlease select from the following:\n" + availableActions[0] + "\n" + availableActions[1]);
      while(action === ""){
-         action = prompt("You must do something.\nYou have " + userHP + " remaining. Your enemy has " + enemyHP + " remaining. What would you like to do?\n\nPlease select from the following:\n" + availableActions[0] + "\n" + availableActions[1]);
+         action = prompt("You must do something.\nYou have " + userHP + " remaining. Your enemy has " + enemyHP + " remaining. What would you like to do?\n\nPlease select from the following:\n" + availableActions[0] + "\n" + availableActions[1] + " Warning: Special deals extra damage, but hurts yourself.");
      }
      for (var iA = 0; iA < 1; ) {
          for (i = 0; i < availableActions.length; i++){
@@ -134,12 +134,15 @@ Date
                  }
                  if (action.toLowerCase() === availableActions[1].toLowerCase()) {
                      hitVar = damageVariance(minVar, maxVar);
-                     atkHit = attack(userWeaponDamage, userWeaponCritChance, userWeaponCritHit, hitVar);
+                     atkHit = attack(userWeaponDamage*3, userWeaponCritChance, userWeaponCritHit, hitVar);
                      enemyHP = enemyHP - atkHit;
-                     if (enemyHP <= 0) {
-                         console.log("You deal " + atkHit + " damage. Your enemy is vanquished! Congratulations!");
+                     userHP = userHP - userWeaponDamage;
+                     if (enemyHP <= 0 && userHP <= 0) {
+                         console.log("You deal " + atkHit + " damage and take " + userWeaponDamage + " damage. You and your enemy are both down. The match is a draw.");
+                     } else if (enemyHP <= 0 && userHP > 0){
+                         console.log("You deal " + atkHit + " damage and take " + userWeaponDamage + " damage. Your enemy is vanquished! Congratulations!");
                      } else {
-                         console.log("You deal " + atkHit + " damage. Your enemy has " + enemyHP + " remaining.");
+                         console.log("You deal " + atkHit + " damage and take " + userWeaponDamage + " damage. Your enemy has " + enemyHP + " remaining.");
                      }
                      actionValid++;
                  }
@@ -169,10 +172,13 @@ Date
                  enemyHitVar = damageVariance(minVar, maxVar);
                  enemyAtkHit = attack(enemyDamage*2, enemyCritChance, enemyCritHit, enemyHitVar);
                  userHP = userHP - enemyAtkHit;
-                 if(userHP <= 0){
-                     console.log("Your enemy used their special ability! You take " + enemyAtkHit + " damage. You have been defeated!");
+                 enemyHP = enemyHP - enemyDamage;
+                 if (enemyHP <= 0 && userHP <= 0) {
+                     console.log("Your enemy deals " + enemyAtkHit + " damage and takes " + enemyDamage + " damage. You and your enemy are both down. The match is a draw.");
+                 } else if (enemyHP > 0 && userHP <= 0){
+                     console.log("Your enemy deals " + enemyAtkHit + " damage and takes " + enemyDamage + " damage. You have been defeated!");
                  } else {
-                     console.log("Your enemy used their special ability! You take " + enemyAtkHit + " damage. You have " + userHP + " remaining.");
+                     console.log("Your enemy deals " + enemyAtkHit + " damage and takes " + enemyDamage + " damage. Your enemy has " + enemyHP + " remaining.");
                  }
                  i = availableActions.length + 1;
              }
