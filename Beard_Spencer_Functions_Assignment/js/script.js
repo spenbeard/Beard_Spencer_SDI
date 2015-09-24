@@ -11,9 +11,12 @@ Date
      return variance;
  }
 
- //numbers to create variance for damage. Damage variance from minVar(75%) to maxVar(125%) of the hit calculated by baseAttackDamageFunction
- minVar = 75;
- maxVar = 125;
+ //numbers to create variance for attack.
+ var minVar = 75;
+ var maxVar = 125;
+ //numbers to create variance for special attack.
+ var minSpeVar = 100;
+ var maxSpeVar = 200;
 
  //Initial combat choice
  var userName = prompt("Hello and welcome to the Arena. What is your name?");
@@ -53,7 +56,7 @@ Date
      }
      if(weaponValid == 0){
          console.log("I do not possess that weapon. Please listen carefully.");
-         userWeapon = prompt("What weapons do you desire to fight with?\n\nChoose from the following options:\n" + weaponChoices[0] + " - High base damage.\n" + weaponChoices[1] + " - High stun chance.\n" + weaponChoices[2] + " - High Critical strike chance.");
+         userWeapon = prompt("I do not possess that weapon. Please listen carefully./nWhat weapons do you desire to fight with?\n\nChoose from the following options:\n" + weaponChoices[0] + " - High base damage.\n" + weaponChoices[1] + " - High stun chance.\n" + weaponChoices[2] + " - High Critical strike chance.");
      } else{
          iW = 1;
      }
@@ -80,7 +83,7 @@ Date
      }
      if(enemyValid == 0){
          console.log("You cannot fight an imaginary enemy. Please listen carefully.");
-         enemyChoice = prompt("Finally, what enemy would you like to fight?\n\nChoose from the following options:\n" + enemyRace[0] + " - Prefers swords.\n" + enemyRace[1] + " - Prefers hammers.\n" + enemyRace[2] + " - Prefers bows.");
+         enemyChoice = prompt("You cannot fight an imaginary enemy. Please listen carefully.\nWhat enemy would you like to fight?\n\nChoose from the following options:\n" + enemyRace[0] + " - Prefers swords.\n" + enemyRace[1] + " - Prefers hammers.\n" + enemyRace[2] + " - Prefers bows.");
      } else{
          iE = 1;
      }
@@ -108,14 +111,14 @@ Date
  //health for battle
  var userHP = 100;
  var enemyHP = 100;
- var availableActions = ["Attack", "Special"];
+ var availableActions = ["Attack", "Special Attack"];
  var actionValid = 0;
 
 //battle sequence
  while(userHP > 0 && enemyHP > 0) {
-     var action = prompt("You have " + userHP + " remaining. Your enemy has " + enemyHP + " remaining. What would you like to do?\n\nPlease select from the following:\n" + availableActions[0] + "\n" + availableActions[1]);
+     var action = prompt("You have " + userHP + " remaining. Your enemy has " + enemyHP + " remaining. What would you like to do?\n\nPlease select from the following:\n" + availableActions[0] + "\n" + availableActions[1] + " - Warning: Special Attack deals extra damage, but hurts you as well.");
      while(action === ""){
-         action = prompt("You must do something.\nYou have " + userHP + " remaining. Your enemy has " + enemyHP + " remaining. What would you like to do?\n\nPlease select from the following:\n" + availableActions[0] + "\n" + availableActions[1] + " Warning: Special deals extra damage, but hurts yourself.");
+         action = prompt("You must do something.\nYou have " + userHP + " remaining. Your enemy has " + enemyHP + " remaining. What would you like to do?\n\nPlease select from the following:\n" + availableActions[0] + "\n" + availableActions[1] + " - Warning: Special Attack deals extra damage, but hurts you as well.");
      }
      for (var iA = 0; iA < 1; ) {
          for (i = 0; i < availableActions.length; i++){
@@ -134,9 +137,10 @@ Date
                  }
                  if (action.toLowerCase() === availableActions[1].toLowerCase()) {
                      hitVar = damageVariance(minVar, maxVar);
-                     atkHit = attack(userWeaponDamage*3, userWeaponCritChance, userWeaponCritHit, hitVar);
+                     atkHit = attack(userWeaponDamage * 3, userWeaponCritChance, userWeaponCritHit, hitVar);
+                     var specialVar = damageVariance(minSpeVar, maxSpeVar);
                      enemyHP = enemyHP - atkHit;
-                     userHP = userHP - userWeaponDamage;
+                     userHP = userHP - userWeaponDamage * specialVar;
                      if (enemyHP <= 0 && userHP <= 0) {
                          console.log("You deal " + atkHit + " damage and take " + userWeaponDamage + " damage. You and your enemy are both down. The match is a draw.");
                      } else if (enemyHP <= 0 && userHP > 0){
@@ -149,7 +153,7 @@ Date
              }
          }
          if(actionValid == 0){
-             action = prompt("You can not do that.\nYou have " + userHP + " remaining. Your enemy has " + enemyHP + " remaining. What would you like to do?\n\nPlease select from the following:\n" + availableActions[0] + "\n" + availableActions[1]);
+             action = prompt("You can not do that.\nYou have " + userHP + " remaining. Your enemy has " + enemyHP + " remaining. What would you like to do?\n\nPlease select from the following:\n" + availableActions[0] + "\n" + availableActions[1] + " - Warning: Special Attack deals extra damage, but hurts you as well.");
          } else {
              iA = 1;
          }
@@ -171,8 +175,9 @@ Date
              if(enemyAction > 80){
                  enemyHitVar = damageVariance(minVar, maxVar);
                  enemyAtkHit = attack(enemyDamage*2, enemyCritChance, enemyCritHit, enemyHitVar);
+                 var enemySpeVar = damageVariance(minSpeVar, maxSpeVar);
                  userHP = userHP - enemyAtkHit;
-                 enemyHP = enemyHP - enemyDamage;
+                 enemyHP = enemyHP - enemyDamage * enemySpeVar;
                  if (enemyHP <= 0 && userHP <= 0) {
                      console.log("Your enemy deals " + enemyAtkHit + " damage and takes " + enemyDamage + " damage. You and your enemy are both down. The match is a draw.");
                  } else if (enemyHP > 0 && userHP <= 0){
@@ -189,8 +194,6 @@ Date
 
  /*
  Still to do:
- 1) Test all prompts for what happens when nothing is entered.
- 2) Test all prompts for incorrect entries.
  3) Write out test values for assignment.
  4) Add explanation comments to code.
   */
