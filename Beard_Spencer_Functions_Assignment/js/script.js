@@ -72,9 +72,9 @@ Date
              var enemyDamage = weaponDamage[i];
              console.log("You enemy's damage is " + enemyDamage);
              var enemyCritChance = weaponCritChance[i];
-             console.log("Your enemy's critical strike chance is " + enemyCritChance);
+             console.log("Your enemy's critical strike chance is " + enemyCritChance*100 + "%.");
              var enemyCritHit = weaponCritHit[i];
-             console.log("Your enemy's critical strike multiplier is " + enemyCritHit);
+             console.log("Your enemy's critical strike multiplier is " + enemyCritHit + ".");
              enemyValid++;
          }
      }
@@ -108,37 +108,75 @@ Date
  //health for battle
  var userHP = 100;
  var enemyHP = 100;
- var availableActions = ["Attack"];
+ var availableActions = ["Attack", "Special"];
+ var actionValid = 0;
 
 //battle sequence
  while(userHP > 0 && enemyHP > 0) {
-     var action = prompt("You have " + userHP + " remaining. Your enemy has " + enemyHP + " remaining. What would you like to do?\n\nPlease select from the following: Attack");
-     for (i = 0; i < availableActions.length; i++) {
-         //re-evaluate this code. This does not allow for different options to be selected. Attack, special attack, and anything else would always do the same thing.
-         if (availableActions[i].toLowerCase() === action.toLowerCase()){
-             if(action.toLowerCase() === availableActions[0].toLowerCase()){
-                 var hitVar = damageVariance(minVar, maxVar);
-                 var atkHit = attack(userWeaponDamage, userWeaponCritChance, userWeaponCritHit, hitVar);
-                 enemyHP = enemyHP - atkHit;
-                 if(enemyHP <= 0){
-                     console.log("You deal " + atkHit + " damage. Your enemy is vanquished! Congratulations!");
-                 } else {
-                     console.log("You deal " + atkHit + " damage. Your enemy has " + enemyHP + " remaining.");
+     var action = prompt("You have " + userHP + " remaining. Your enemy has " + enemyHP + " remaining. What would you like to do?\n\nPlease select from the following:\n" + availableActions[0] + "\n" + availableActions[1]);
+     while(action === ""){
+         action = prompt("You must do something.\nYou have " + userHP + " remaining. Your enemy has " + enemyHP + " remaining. What would you like to do?\n\nPlease select from the following:\n" + availableActions[0] + "\n" + availableActions[1]);
+     }
+     for (var iA = 0; iA < 1; ) {
+         for (i = 0; i < availableActions.length; i++){
+             if (availableActions[i].toLowerCase() === action.toLowerCase()) {
+                 console.log("You chose " + action);
+                 if (action.toLowerCase() === availableActions[0].toLowerCase()) {
+                     var hitVar = damageVariance(minVar, maxVar);
+                     var atkHit = attack(userWeaponDamage, userWeaponCritChance, userWeaponCritHit, hitVar);
+                     enemyHP = enemyHP - atkHit;
+                     if (enemyHP <= 0) {
+                         console.log("You deal " + atkHit + " damage. Your enemy is vanquished! Congratulations!");
+                     } else {
+                         console.log("You deal " + atkHit + " damage. Your enemy has " + enemyHP + " remaining.");
+                     }
+                     actionValid++;
+                 }
+                 if (action.toLowerCase() === availableActions[1].toLowerCase()) {
+                     hitVar = damageVariance(minVar, maxVar);
+                     atkHit = attack(userWeaponDamage, userWeaponCritChance, userWeaponCritHit, hitVar);
+                     enemyHP = enemyHP - atkHit;
+                     if (enemyHP <= 0) {
+                         console.log("You deal " + atkHit + " damage. Your enemy is vanquished! Congratulations!");
+                     } else {
+                         console.log("You deal " + atkHit + " damage. Your enemy has " + enemyHP + " remaining.");
+                     }
+                     actionValid++;
                  }
              }
          }
+         if(actionValid == 0){
+             action = prompt("You can not do that.\nYou have " + userHP + " remaining. Your enemy has " + enemyHP + " remaining. What would you like to do?\n\nPlease select from the following:\n" + availableActions[0] + "\n" + availableActions[1]);
+         } else {
+             iA = 1;
+         }
      }
-     var enemyAction = enemyDecision(0, availableActions.length);
-     for (i = 0; i < availableActions.length; i++){
-         if(availableActions[enemyAction] === availableActions[0]){
-             var enemyHitVar = damageVariance(minVar, maxVar);
-             var enemyAtkHit = attack(enemyDamage, enemyCritChance, enemyCritHit, enemyHitVar);
-             userHP = userHP - enemyAtkHit;
-             if(userHP <= 0){
-                 console.log("You take " + enemyAtkHit + " damage. You have been defeated!");
-             } else{
-                 console.log("You take " + enemyAtkHit + " damage. You have " + userHP + " remaining.");
+     if(enemyHP > 0){
+         var enemyAction = enemyDecision(1, 100);
+         for (i = 0; i < availableActions.length; i++){
+             if(enemyAction <= 80){
+                 var enemyHitVar = damageVariance(minVar, maxVar);
+                 var enemyAtkHit = attack(enemyDamage, enemyCritChance, enemyCritHit, enemyHitVar);
+                 userHP = userHP - enemyAtkHit;
+                 if(userHP <= 0){
+                     console.log("Your enemy attacked! You take " + enemyAtkHit + " damage. You have been defeated!");
+                 } else {
+                     console.log("Your enemy attacked! You take " + enemyAtkHit + " damage. You have " + userHP + " remaining.");
+                 }
+                 i = availableActions.length + 1;
+             }
+             if(enemyAction > 80){
+                 enemyHitVar = damageVariance(minVar, maxVar);
+                 enemyAtkHit = attack(enemyDamage*2, enemyCritChance, enemyCritHit, enemyHitVar);
+                 userHP = userHP - enemyAtkHit;
+                 if(userHP <= 0){
+                     console.log("Your enemy used their special ability! You take " + enemyAtkHit + " damage. You have been defeated!");
+                 } else {
+                     console.log("Your enemy used their special ability! You take " + enemyAtkHit + " damage. You have " + userHP + " remaining.");
+                 }
+                 i = availableActions.length + 1;
              }
          }
+         actionValid = 0;
      }
  }
