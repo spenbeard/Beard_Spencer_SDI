@@ -30,7 +30,7 @@ Date
  //array for weapon choices
  var weaponChoices = ["Sword", "Hammer", "Bow"];
  //damage = [sword damage, axe damage, bow damage]
- var weaponDamage = [8, 7, 4];
+ var weaponDamage = [8, 7, 5];
  //critical strike chance (in decimal format) [sword chance, hammer chance, bow chance]
  var weaponCritChance = [.05,.10,.20];
  //critical strike multiplier [sword multiplier, hammer multiplier, bow multiplier]
@@ -173,7 +173,9 @@ Date
                          console.log("You deal " + atkHit + " damage and take " + selfDamage + " damage. You and your enemy are both down. The match is a draw.");
                      } else if (enemyHP <= 0 && userHP > 0){
                          console.log("You deal " + atkHit + " damage and take " + selfDamage + " damage. Your enemy is vanquished! Congratulations!");
-                     } else {
+                     } else if(enemyHP > 0 && userHP <= 0){
+                         console.log("You deal " + atkHit + " damage and take " + selfDamage + " damage. You have been defeated!");
+                     } else{
                          console.log("You deal " + atkHit + " damage and take " + selfDamage + " damage.");
                          console.log("You have " + userHP + " remaining and your enemy has " + enemyHP + " remaining.");
                      }
@@ -219,7 +221,7 @@ Date
                  //calls upon the damageVariance function to determine variance for the damage dealt to the enemy for using Special Attack.
                  var enemySpeVar = damageVariance(minSpeVar, maxSpeVar);
                  //damage dealt to self for using special attack
-                 var enemySelfDamage = Math.round(userWeaponDamage * specialVar);
+                 var enemySelfDamage = Math.round(enemyDamage * specialVar);
                  //adjusts userHP based on the damage
                  userHP = userHP - enemyAtkHit;
                  //adjusts enemyHP based on the damage
@@ -229,7 +231,9 @@ Date
                      console.log("Your enemy deals " + enemyAtkHit + " damage and takes " + enemySelfDamage + " damage. You and your enemy are both down. The match is a draw.");
                  } else if (enemyHP > 0 && userHP <= 0){
                      console.log("Your enemy deals " + enemyAtkHit + " damage and takes " + enemySelfDamage + " damage. You have been defeated!");
-                 } else {
+                 } else if(enemyHP < 0 && userHP >= 0){
+                     console.log("Your enemy deals " + enemyAtkHit + " damage and takes " + enemySelfDamage + " damage. Your enemy is vanquished! Congratulations!");
+                 } else{
                      console.log("Your enemy deals " + enemyAtkHit + " damage and takes " + enemySelfDamage + " damage.");
                      console.log("You have " + userHP + " remaining and your enemy has " + enemyHP + " remaining.");
                  }
@@ -310,4 +314,89 @@ Date
   You have 7 remaining and your enemy has 27 remaining.
   Your enemy deals 14 damage and takes 8 damage. You have been defeated!
 
+  Hello, Legolas. Welcome to the Arena.
+  You have chosen to wield a Bow.
+  Your base damage is 4.
+  Your base critical strike chance is 20%.
+  Your base critical strike multiplier is 5.
+  You have chosen to fight a(n) Elf.
+  You enemy's damage is 4
+  Your enemy's critical strike chance is 20%.
+  Your enemy's critical strike multiplier is 5.
+  You chose Special Attack
+  You deal 9 damage and take 5 damage.
+  You have 95 remaining and your enemy has 91 remaining.
+  Your enemy deals 9 damage and takes 5 damage.
+  You have 86 remaining and your enemy has 86 remaining.
+  You chose Attack
+  You deal 4 damage.
+  You have 86 remaining and your enemy has 82 remaining.
+  Your enemy attacked! You take 4 damage.
+  You have 82 remaining and your enemy has 82 remaining.
+  You chose Attack
+  You deal 4 damage.
+  You have 82 remaining and your enemy has 78 remaining.
+  Your enemy attacked! You take 5 damage.
+  You have 77 remaining and your enemy has 78 remaining.
+  You chose Attack
+  You deal 5 damage.
+  You have 77 remaining and your enemy has 73 remaining.
+  Your enemy attacked! You take 4 damage.
+  You have 73 remaining and your enemy has 73 remaining.
+  You chose Attack
+  You deal 3 damage.
+  You have 73 remaining and your enemy has 70 remaining.
+  Your enemy attacked! You take 21 damage.
+  You have 52 remaining and your enemy has 70 remaining.
+  You chose Special Attack
+  You deal 48 damage and take 6 damage.
+  You have 46 remaining and your enemy has 22 remaining.
+  Your enemy deals 36 damage and takes 6 damage.
+  You have 10 remaining and your enemy has 16 remaining.
+  You chose Special Attack
+  You deal 6 damage and take 6 damage.
+  You have 4 remaining and your enemy has 10 remaining.
+  Your enemy attacked! You take 5 damage. You have been defeated!
+
+  Hello, Assassin. Welcome to the Arena.
+  You have chosen to wield a Bow.
+  Your base damage is 5.
+  Your base critical strike chance is 20%.
+  Your base critical strike multiplier is 5.
+  You have chosen to fight a(n) Human.
+  You enemy's damage is 8
+  Your enemy's critical strike chance is 5%.
+  Your enemy's critical strike multiplier is 2.
+  You chose Attack
+  You deal 5 damage.
+  You have 100 remaining and your enemy has 95 remaining.
+  Your enemy attacked! You take 6 damage.
+  You have 94 remaining and your enemy has 95 remaining.
+  You chose Attack
+  You deal 4 damage.
+  You have 94 remaining and your enemy has 91 remaining.
+  Your enemy attacked! You take 10 damage.
+  You have 84 remaining and your enemy has 91 remaining.
+  You chose Special Attack
+  You deal 12 damage and take 8 damage.
+  You have 76 remaining and your enemy has 79 remaining.
+  Your enemy attacked! You take 8 damage.
+  You have 68 remaining and your enemy has 79 remaining.
+  You chose Special Attack
+  You deal 57 damage and take 6 damage.
+  You have 62 remaining and your enemy has 22 remaining.
+  Your enemy attacked! You take 9 damage.
+  You have 53 remaining and your enemy has 22 remaining.
+  You chose Attack
+  You deal 4 damage.
+  You have 53 remaining and your enemy has 18 remaining.
+  Your enemy deals 14 damage and takes 9 damage.
+  You have 39 remaining and your enemy has 9 remaining.
+  You chose Attack
+  You deal 4 damage.
+  You have 39 remaining and your enemy has 5 remaining.
+  Your enemy attacked! You take 16 damage.
+  You have 23 remaining and your enemy has 5 remaining.
+  You chose Attack
+  You deal 5 damage. Your enemy is vanquished! Congratulations!
   */
