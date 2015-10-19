@@ -221,7 +221,7 @@ Date
                  //calls upon the damageVariance function to determine variance for the damage dealt to the enemy for using Special Attack.
                  var enemySpeVar = damageVariance(minSpeVar, maxSpeVar);
                  //damage dealt to self for using special attack
-                 var enemySelfDamage = Math.round(enemyDamage * specialVar);
+                 var enemySelfDamage = Math.round(enemyDamage * enemySpeVar);
                  //adjusts userHP based on the damage
                  userHP = userHP - enemyAtkHit;
                  //adjusts enemyHP based on the damage
